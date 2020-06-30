@@ -1,12 +1,20 @@
+var express = require('express');
+const {TodoSerializer, TodoDeserializer} = require('../app/serializers/todo');
+const { match } = require('assert');
+
 module.exports = function(app, db){
   function success(res, payload) {
     return res.status(200).json(payload)
   };
-
+  
   app.get("/todos", async (req, res, next) => {
     try {
-      const todos = await db.Todo.find({});
-      return success(res, todos);
+      await db.Todo.find({}).then(todos => {
+        if (todos) {
+          res.json(TodoSerializer.serialize(todos));
+        }
+      });
+      return res.json({data: []});
     } catch (err) {
       next({ status: 400, message: "failed to get todos" });
     }
@@ -15,7 +23,7 @@ module.exports = function(app, db){
   app.post("/todos", async (req, res, next) => {
     try {
       const todo = await db.Todo.create(req.body);
-      return success(res, todo);
+      return res.status(200).json({'status': 'created'});
     } catch (err) {
       next({ status: 400, message: "failed to create todo" });
     }

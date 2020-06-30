@@ -1,0 +1,27 @@
+{
+  "name": "nj-todo-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andy-vin/nj-todo-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andy-vin/nj-todo-app/issues"
+  },
+  "homepage": "https://github.com/andy-vin/nj-todo-app#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "jsonapi-serializer": "^3.6.6",
+    "mongodb-extjson": "^3.0.3",
+    "mongoose": "^5.9.20"
+  }
+}
